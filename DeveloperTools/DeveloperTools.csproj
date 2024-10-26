@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
+    <ProjectGuid>{E850F593-8626-440C-B92B-A6EBA7781740}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Xname.DeveloperTools</RootNamespace>
+    <AssemblyName>Xname.DeveloperTools</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <LangVersion>11</LangVersion>
+    <FileAlignment>512</FileAlignment>
+    <PlatformTarget>x64</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" HintPath="$(PLUGINAPI_REFERENCES)\System.dll" />
+    <Reference Include="mscorlib" HintPath="$(PLUGINAPI_REFERENCES)\mscorlib.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="PluginAPI" HintPath="$(PLUGINAPI_REFERENCES)\PluginAPI-Publicized.dll" />
+    <Reference Include="Assembly-CSharp" HintPath="$(PLUGINAPI_REFERENCES)\Assembly-CSharp-Publicized.dll" />
+    <Reference Include="UnityEngine.CoreModule" HintPath="$(PLUGINAPI_REFERENCES)\UnityEngine.CoreModule.dll" />
+    <Reference Include="Assembly-CSharp-firstpass" HintPath="$(PLUGINAPI_REFERENCES)\Assembly-CSharp-firstpass.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Error\ErrorHandler.cs" />
+    <Compile Include="Error\ErrorLog.cs" />
+    <Compile Include="Plugin.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+	  copy "$(TargetPath)" "$(PLUGINAPI_REFERENCES)\$(TargetFileName)"
+	</PostBuildEvent>
+  </PropertyGroup>
+</Project>
